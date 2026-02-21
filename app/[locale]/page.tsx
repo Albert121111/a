@@ -1,4 +1,5 @@
 import { HeroSlider } from '@/components/home/HeroSlider';
+import { AnimateIn } from '@/components/ui/animate-in';
 import { prisma } from '@/lib/prisma';
 import { t } from '@/lib/i18n/config';
 import Link from 'next/link';
@@ -35,7 +36,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
         }))}
       />
 
-      <section className="container section-space">
+      <AnimateIn className="container section-space">
         <SectionHeader title={locale === 'en' ? 'Popular classes' : 'Популярные тренировки'} subtitle={locale === 'en' ? 'Our highlights' : 'Подборка недели'} />
         <div className="grid gap-4 md:grid-cols-4">
           {sessions.map((s) => (
@@ -45,21 +46,23 @@ export default async function Home({ params }: { params: { locale: string } }) {
             </article>
           ))}
         </div>
-      </section>
+      </AnimateIn>
 
-      <section className="container section-space pt-0">
+      <AnimateIn className="container section-space pt-0" delay={0.05}>
         <SectionHeader title={locale === 'en' ? 'Trainers' : 'Тренеры'} subtitle={locale === 'en' ? 'Meet the team' : 'Команда Tiara'} />
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
           {trainers.map((tr) => (
-            <Link key={tr.id} href={`/${locale}/trainers/${tr.slug}`} className="card-surface p-5">
-              <p className="text-lg font-medium">{t(locale, { ru: tr.nameRu, en: tr.nameEn })}</p>
-              <p className="mt-2 text-sm text-zinc-600">{tr.specializations.join(' · ')}</p>
-            </Link>
+            <div key={tr.id}>
+              <Link href={`/${locale}/trainers/${tr.slug}`} className="card-surface block p-5">
+                <p className="text-lg font-medium">{t(locale, { ru: tr.nameRu, en: tr.nameEn })}</p>
+                <p className="mt-2 text-sm text-zinc-600">{tr.specializations.join(' · ')}</p>
+              </Link>
+            </div>
           ))}
         </div>
-      </section>
+      </AnimateIn>
 
-      <section className="container section-space pt-0">
+      <AnimateIn className="container section-space pt-0" delay={0.1}>
         <SectionHeader title={locale === 'en' ? 'Reviews' : 'Отзывы'} subtitle={locale === 'en' ? 'What members say' : 'Что говорят клиенты'} />
         <div className="grid gap-4 md:grid-cols-3">
           {reviews.map((r) => (
@@ -69,19 +72,21 @@ export default async function Home({ params }: { params: { locale: string } }) {
             </article>
           ))}
         </div>
-      </section>
+      </AnimateIn>
 
-      <section className="container section-space pt-0">
+      <AnimateIn className="container section-space pt-0" delay={0.15}>
         <SectionHeader title={locale === 'en' ? 'Blog & News' : 'Блог / Новости'} subtitle={locale === 'en' ? 'Fresh updates' : 'Свежие материалы'} />
         <div className="grid gap-4 md:grid-cols-3">
           {posts.map((p) => (
-            <Link key={p.id} href={`/${locale}/blog/${p.slug}`} className="card-surface p-5">
-              <h3 className="text-xl font-medium">{t(locale, { ru: p.titleRu, en: p.titleEn })}</h3>
-              <p className="mt-2 text-sm text-zinc-600">{t(locale, { ru: p.excerptRu, en: p.excerptEn })}</p>
-            </Link>
+            <div key={p.id}>
+              <Link href={`/${locale}/blog/${p.slug}`} className="card-surface block p-5">
+                <h3 className="text-xl font-medium">{t(locale, { ru: p.titleRu, en: p.titleEn })}</h3>
+                <p className="mt-2 text-sm text-zinc-600">{t(locale, { ru: p.excerptRu, en: p.excerptEn })}</p>
+              </Link>
+            </div>
           ))}
         </div>
-      </section>
+      </AnimateIn>
     </div>
   );
 }
