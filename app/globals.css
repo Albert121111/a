@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+body { @apply bg-white text-zinc-900 antialiased; }
+.container { @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-10; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  @apply outline-none ring-2 ring-tiara ring-offset-2;
+}
