@@ -1,5 +1,14 @@
 # Tiara Fitness Club
 
+## Requirements
+- Node.js **>= 18.17.0** (recommended: 20 LTS)
+- npm **>= 9**
+- Docker + Docker Compose
+
+If you are on Node 16 and see `For Next.js, Node.js version >= v18.17.0 is required`, switch Node first:
+- `nvm use` (uses `.nvmrc` in repo), or
+- install Node 20 LTS manually.
+
 ## Run
 1. `npm i`
 2. `cp .env.example .env`
